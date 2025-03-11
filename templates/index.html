@@ -1,0 +1,25 @@
+<html>
+<head>
+    <title>Fish Species Predictor</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding: 20px; }
+        input { margin: 10px; padding: 5px; width: 200px; }
+        button { padding: 10px 20px; background: #4CAF50; color: white; border: none; }
+    </style>
+</head>
+<body>
+    <h1>Predict Fish Species</h1>
+    <form action="/predict" method="POST">
+        <input type="number" name="Weight" placeholder="Weight (g)" step="0.1" required><br>
+        <input type="number" name="Length1" placeholder="Length1 (cm)" step="0.1" required><br>
+        <input type="number" name="Length2" placeholder="Length2 (cm)" step="0.1" required><br>
+        <input type="number" name="Length3" placeholder="Length3 (cm)" step="0.1" required><br>
+        <input type="number" name="Height" placeholder="Height (cm)" step="0.1" required><br>
+        <input type="number" name="Width" placeholder="Width (cm)" step="0.1" required><br>
+        <button type="submit">Predict</button>
+    </form>
+    {% if prediction %}
+        <h2>Predicted Species: {{ prediction }}</h2>
+    {% endif %}
+</body>
+</html>

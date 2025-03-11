@@ -1,10 +1,13 @@
 from flask import Flask, render_template, request
 import joblib
 import numpy as np
+import os
 
 app = Flask(__name__)
-model = joblib.load('model.pkl')
-le = joblib.load('label_encoder.pkl')
+
+# Load model and encoder
+model = joblib.load(os.path.join(os.path.dirname(__file__), 'model.pkl'))
+le = joblib.load(os.path.join(os.path.dirname(__file__), 'label_encoder.pkl'))
 
 @app.route('/')
 def home():
@@ -25,4 +28,5 @@ def predict():
     return render_template('index.html', prediction=species)
 
 if __name__ == '__main__':
-    app.run()
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
